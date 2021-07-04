@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.titleLogoContainer {
+  margin-right: auto;
+  display: flex;
+
+}
+.headerNavContainer {
+  margin-right: 2em;
+}
+.header .logo {
+  height: 5em;
+  width: 8em;
+}

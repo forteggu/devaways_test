@@ -1,0 +1,13 @@
+.horizontalNav ul {
+    list-style: none;
+    display: flex;
+    align-items: flex-start;
+
+}
+.horizontalNav ul li {
+    margin: 1em;
+}
+.horizontalNav ul>li:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
