@@ -1,11 +1,47 @@
-.generalRankingContainer{
-    background-color: gainsboro;
-    text-align: justify;
+.generalRankingContainer {
+  background-color: gainsboro;
+  text-align: left;
+}
+.generalRankingContainer h1 {
+  text-align: center;
 }
 
-.rankPosition{
-    margin-left: 1em;
+.generalRankingContainer ul {
+  display: block;
+  margin-left: 33.3vw;
+  width: 33.3vw;
 }
-.rankName{
-    margin-left: 1em;
+
+.generalRankingContainer ul li.wrapper {
+  background-color: blueviolet;
+  display: flex;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  text-align: left;
+  margin: 1.5em;
+}
+
+.generalRankingContainer ul li.wrapper > * {
+  flex: 1;
+  text-align: center;
+}
+.rankPosition {
+  font-size: 1.5em;
+}
+.generalRankingContainer ul li:first-child .rankPosition{
+  font-size: 3em;
+}
+.generalRankingContainer ul li:nth-child(2) .rankPosition{
+  font-size: 2.5em;
+}
+.generalRankingContainer ul li:nth-child(3) .rankPosition{
+  font-size: 2em;
+}
+
+.foto {
+  margin: 1em;
+}
+.rankName {
+  flex-grow: 3;
 }

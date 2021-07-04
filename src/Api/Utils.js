@@ -1,3 +1,8 @@
+/**
+ * Este método corrige los tiempos para evitar la trampa de que los .sort den resultados erróneos
+ * @param {*} time 
+ * @returns 
+ */
 export function fixTimeStamp(time) {
     let splitdTimeHM = time.split(":"); //Obtiene hh:mm: + ss:mmss
     let splitdTimeSMs = splitdTimeHM[2].split("."); //Obtiene ss:mmss
@@ -11,6 +16,9 @@ export function fixTimeStamp(time) {
     return newTimeHM.join(":") + ":" + newTimeSMs.join(".");
   } 
 
+  /**
+   * Este método se utiliza para asignar una posición según el número de puntos que se haya determinado que tienen los pilotos
+   */
 export function setPole(ranking){
     let posNumber = 1;
     return ranking.map((pos,index,elements) => {
@@ -18,6 +26,8 @@ export function setPole(ranking){
         console.log("index: ",index);
         let nextPos = elements[index+1];
         console.log("nextpos: ",nextPos);
+        //Se tiene en cuenta si dos o más pilotos tienen los mismos puntos. Eso puede llevar a errores en los rankings.
+        //En caso de empate se les da a ambos el mismo puesto
         if(nextPos && nextPos.puntuacion === pos.puntuacion){
             pos.posicion = posNumber;
         }else{
