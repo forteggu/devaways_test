@@ -1,7 +1,7 @@
 //import cssAV from './AutomaticView.module.css';
 
 import GeneralRanking from "../GeneralRanking/GeneralRanking";
-import RacesTimes from "../RacesTimes/RacesTimes";
+import RacesTimesPositions from "../RacesTimesPositions/RacesTimesPositions";
 import * as DataApi from "../../Api/DataApi";
 import { orderRacePositionsByTime } from "../../Api/Utils";
 import { useState } from "react";
@@ -31,16 +31,16 @@ function AutomaticView() {
     <div>
       <button onClick={changeView}>Change View</button>
       {whatIsBeingShown === Constants.genRank ?<GeneralRanking></GeneralRanking>:null}
-      {whatIsBeingShown === Constants.timeMode ?<RacesTimes
+      {whatIsBeingShown === Constants.timeMode ?<RacesTimesPositions
         listadoCarreras={mapaCarrerasTiempos}
         pilotos={mapaUsuarios}
         mode = {Constants.timeMode}
-      ></RacesTimes> :null}
-      {whatIsBeingShown === Constants.posMode ? <RacesTimes
+      ></RacesTimesPositions> :null}
+      {whatIsBeingShown === Constants.posMode ? <RacesTimesPositions
         listadoCarreras={mapaCarrerasPosiciones}
         pilotos={mapaUsuarios}
         mode = {Constants.posMode}
-      ></RacesTimes> :null}
+      ></RacesTimesPositions> :null}
     </div>
   );
 }

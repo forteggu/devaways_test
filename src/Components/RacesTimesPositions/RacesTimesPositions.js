@@ -1,6 +1,6 @@
-import cssRT from "./RacesTimes.module.css";
+import cssRT from "./RacesTimesPositions.module.css";
 import Constants from "../../Api/Constants";
-function RacesTimes(props) {
+function RacesTimesPositions(props) {
     let position = 0;
   return (
     <div className={cssRT.RacesTimesContainer}>
@@ -58,4 +58,4 @@ function RacesTimes(props) {
   );
 }
 
-export default RacesTimes;
+export default RacesTimesPositions;
