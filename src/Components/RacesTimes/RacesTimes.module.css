@@ -1,0 +1,27 @@
+.RacesTimesContainer {
+  display: block;
+  padding-left: 2em;
+}
+.RacesTimesContainer h3 {
+  text-align: center;
+}
+.raceContainer {
+  display: inline-block;
+  margin-bottom: 2em;
+}
+
+.raceResultsContainer {
+  display: block;
+}
+.raceRow {
+  display: inline-flex;
+  width: auto;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  text-align: left;
+  margin: 0.5em;
+}
+.raceRow>* {
+   margin: 0.25em;
+  }

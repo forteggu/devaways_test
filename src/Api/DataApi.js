@@ -47,22 +47,58 @@ export function getGeneralRanking() {
 }
 
 /**
+ * Devuelve un mapa de las carreras y sus tiempos de forma ordenada
+ * 
  * Para esta función partimos del supuesto de que si el sistema se escala:
  * Todos los pilotos siguen teniendo el mismo número de carreras
  * Las carreras estan ordenadas tal y como lo están actualmente en el JSON
  */
-export function getDatosPorCarreras() {
+export function getClasificacionPorCarreras() {
   let numCarreras = RJson[0].races.length;
+  let mapaCarreasTiempos = [];
   for (let n = 0; n < numCarreras; n++) {
     let datosN = RJson.map((racePilot) => {
-      return { piloto: racePilot.name, tiempo: racePilot.races[n].time };
+      return { pilotId: racePilot._id, tiempo: racePilot.races[n].time };
     });
     datosN.sort(
       (a, b) => Utils.fixTimeStamp(a.tiempo) > Utils.fixTimeStamp(b.tiempo)
     );
-    console.log("datosN: ", datosN);
-    return datosN;
+    mapaCarreasTiempos=[...mapaCarreasTiempos,{raceName:RJson[0].races[n].name , raceRanking:datosN}];
   }
+  return mapaCarreasTiempos;
+}
+
+/**
+ * Esta función devuelve los tiempos por carreras sin ordenar
+ * 
+ * Para esta función partimos del supuesto de que si el sistema se escala:
+ * Todos los pilotos siguen teniendo el mismo número de carreras
+ * Las carreras estan ordenadas tal y como lo están actualmente en el JSON
+ */
+export function getTiemposPorCarreras() {
+  let numCarreras = RJson[0].races.length;
+  let mapaCarreasTiempos = [];
+  for (let n = 0; n < numCarreras; n++) {
+    let datosN = RJson.map((racePilot) => {
+      return { pilotId: racePilot._id, tiempo: racePilot.races[n].time };
+    });
+    mapaCarreasTiempos=[...mapaCarreasTiempos,{raceName:RJson[0].races[n].name , raceRanking:datosN}];
+  }
+  return mapaCarreasTiempos;
+}
+
+//Se crea una biblioteca de acceso rápido a los pilotos - acceso por _id
+export function getDatosPilotos(){
+  let pilotos = {};
+  for (let p of RJson){
+    pilotos[p._id] = {
+      name: p.name,
+      photo:p.picture,
+      age: p.age,
+      team: p.team
+    }
+  }
+  return pilotos;
 }
 export function getDatosCarrera(carrera) {
   //getDatosPorCarrera().filter(carrera);

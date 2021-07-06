@@ -1,9 +1,8 @@
-.App {
-  text-align: center;
-}
+
 .mainContent {
   padding-top: 2em;
-  background-color: red;
+  width: auto;
+  margin: auto;
 }
 .App-link {
   color: #61dafb;
