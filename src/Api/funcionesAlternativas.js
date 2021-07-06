@@ -43,5 +43,4 @@ export function getGeneralRankingSinSupuesto() {
     //Una vez ordenada cada carrera ...
     //ToDo: Terminar
   }
-  console.log(mapaCarreras);
 }*/

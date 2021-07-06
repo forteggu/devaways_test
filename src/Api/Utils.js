@@ -22,10 +22,7 @@ export function fixTimeStamp(time) {
 export function setPole(ranking) {
   let posNumber = 1;
   return ranking.map((pos, index, elements) => {
-    console.log("pos", pos);
-    console.log("index: ", index);
     let nextPos = elements[index + 1];
-    console.log("nextpos: ", nextPos);
     //Se tiene en cuenta si dos o más pilotos tienen los mismos puntos. Eso puede llevar a errores en los rankings.
     //En caso de empate se les da a ambos el mismo puesto
     if (nextPos && nextPos.puntuacion === pos.puntuacion) {
@@ -42,4 +39,8 @@ export function orderRacePositionsByTime(race) {
   return race.sort(
     (a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo)
   );
+}
+
+export const sleep = (time) => {
+  return new Promise(prom => setTimeout(prom, time))
 }

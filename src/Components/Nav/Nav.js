@@ -6,7 +6,6 @@ function Nav(props) {
     <nav className={cssNav.horizontalNav}>
       <ul>
         {props.options.map((option) => {
-          console.log(option.text);
           return (
             <Link key={'Link_'+option.id} to={option.linkTo}>
             <li key={option.id} id={option.id}>

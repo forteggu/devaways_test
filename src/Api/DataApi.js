@@ -38,7 +38,6 @@ export function getGeneralRanking() {
       }
       vp--;
     }
-    console.log("datosN: ", datosN);
   }
 
   globalRanking.sort((a, b) => a.puntuacion < b.puntuacion);
