@@ -8,7 +8,10 @@ import { useState, useEffect } from "react";
 import Constants from "../../Api/Constants";
 
 function AutomaticView() {
-  const [whatIsBeingShown, setWhatIsBeingShown] = useState({view: Constants.genRank, fade:true});
+  const [whatIsBeingShown, setWhatIsBeingShown] = useState({
+    view: Constants.genRank,
+    fade: true,
+  });
   const mapaCarrerasTiempos = DataApi.getTiemposPorCarreras();
   const mapaUsuarios = DataApi.getDatosPilotos();
   const mapaCarrerasPosiciones = mapaCarrerasTiempos.map((carrera) => {
@@ -22,36 +25,28 @@ function AutomaticView() {
     if (whatIsBeingShown.view === Constants.genRank) {
       nextView = Constants.timeMode;
     } else if (whatIsBeingShown.view === Constants.timeMode) {
-      nextView =Constants.posMode;
+      nextView = Constants.posMode;
     } else {
       nextView = Constants.genRank;
     }
     return nextView;
   }
-  
-
 
   useEffect(() => {
-  //Definimos el funcionamiento del interval
-  let transitionToNext = () => {
-    //Limpiamos el intervalo para que durante la transición no corra el tiempo
-    clearInterval(IntervalTimer);
-    //Cambiamos el estado fadeState para disparar el fadeout
-    setWhatIsBeingShown({view: whatIsBeingShown.view, fade:false});
-    //Esperamos que termine la transición
-    sleep(1000).then(()=>{
-      //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
-      setWhatIsBeingShown({view:getNextView(), fade:false});
-      sleep(0).then(()=>{
-        setWhatIsBeingShown({view:getNextView(), fade:true});
-
+    //Definimos el funcionamiento del interval
+    let IntervalTimer = setInterval(() => {
+      //Cambiamos el estado fadeState para disparar el fadeout
+      setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
+      //Esperamos que termine la transición
+      sleep(1000).then(() => {
+        //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
+        //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
+        setWhatIsBeingShown({ view: getNextView(), fade: false });
+        sleep(0).then(() => {
+          setWhatIsBeingShown({ view: getNextView(), fade: true });
+        });
       });
-    });
-  }
-  let IntervalTimer = setInterval(() => {
-    // arranca el interval del hook ;
-      transitionToNext();
-    }, 6000);
+    }, 100000);
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
       clearInterval(IntervalTimer);
@@ -61,14 +56,22 @@ function AutomaticView() {
     <div>
       {whatIsBeingShown.view === Constants.genRank ? (
         <div
-          className={ whatIsBeingShown.fade ? cssAV.fadeInAnimation : cssAV.fadeOutAnimation}
+          className={
+            whatIsBeingShown.fade
+              ? cssAV.fadeInAnimation
+              : cssAV.fadeOutAnimation
+          }
         >
           <GeneralRanking></GeneralRanking>
         </div>
       ) : null}
       {whatIsBeingShown.view === Constants.timeMode ? (
         <div
-          className={whatIsBeingShown.fade ? cssAV.fadeInAnimation : cssAV.fadeOutAnimation}
+          className={
+            whatIsBeingShown.fade
+              ? cssAV.fadeInAnimation
+              : cssAV.fadeOutAnimation
+          }
         >
           <RacesTimesPositions
             listadoCarreras={mapaCarrerasTiempos}
@@ -79,7 +82,11 @@ function AutomaticView() {
       ) : null}
       {whatIsBeingShown.view === Constants.posMode ? (
         <div
-          className={whatIsBeingShown.fade ? cssAV.fadeInAnimation : cssAV.fadeOutAnimation}
+          className={
+            whatIsBeingShown.fade
+              ? cssAV.fadeInAnimation
+              : cssAV.fadeOutAnimation
+          }
         >
           <RacesTimesPositions
             listadoCarreras={mapaCarrerasPosiciones}
@@ -88,6 +95,7 @@ function AutomaticView() {
           ></RacesTimesPositions>
         </div>
       ) : null}
+      <div className="scrollToHere">[1] ...</div>
     </div>
   );
 }
