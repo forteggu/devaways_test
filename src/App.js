@@ -5,6 +5,7 @@ import Header from "./Components/Header/Header";
 import { Route, Switch, Redirect } from "react-router-dom";
 import RacePilotsView from "./Components/RacePilotsView/RacePilotsView";
 import TeamsView from "./Components/TeamsView/TeamsView";
+import RaceView from "./Components/RaceView/RaceView";
 
 function App() {
   return (
@@ -27,8 +28,11 @@ function App() {
           <Route path="/racePilots">
             <RacePilotsView></RacePilotsView>
           </Route>
-          <Route path="/teams">
+          <Route path="/team">
             <TeamsView></TeamsView>
+          </Route>
+          <Route path="/race">
+            <RaceView></RaceView>
           </Route>
         </Switch>
       </main>

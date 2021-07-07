@@ -28,8 +28,8 @@ function GeneralRanking() {
               </div>
 
               <div className={cssGR.imgWrapper}>
-                <Link
-                  to={{ pathname: `./racePilots`, state: {piloto: item.datosPiloto} }}
+              <Link
+                  to={{ pathname: "./racePilots", state: item.datosPiloto }}
                 >
                   <img
                     src={item.datosPiloto.photo}
@@ -48,7 +48,7 @@ function GeneralRanking() {
               </div>
 
               <div className={cssGR.rankTeam}>
-                <Link to="./teams">{item.datosPiloto.team}</Link>
+              <Link to={{ pathname: "./team", state: item.datosPiloto.team }} >{item.datosPiloto.team}</Link>
               </div>
             </div>
           );

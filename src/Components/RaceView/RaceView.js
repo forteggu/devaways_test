@@ -1,11 +1,27 @@
 import * as DataApi from "../../Api/DataApi";
 import cssRaces from "./RaceView.module.css";
 import cssGR from "../GeneralRanking/GeneralRanking.module.css";
+import {useLocation} from 'react-router-dom';
 function RaceView(props) {
-  let carreraN = DataApi.getDatosCarrera(
-    props.nombreCarrera,
-    props.carreras
-  )[0];
+    const params = useLocation();
+    const raceName = params.state;
+
+  let carreraN;
+  let arrayPilotos;
+  if(params && raceName){
+    let tiemposPorCarreras = DataApi.getTiemposPorCarreras();
+    carreraN = DataApi.getDatosCarrera(
+      raceName,
+      tiemposPorCarreras
+    )[0];
+    arrayPilotos = DataApi.getDatosPilotos();
+  }else{
+    carreraN= DataApi.getDatosCarrera(
+      props.nombreCarrera,
+      props.carreras
+    )[0];
+    arrayPilotos = props.pilotos;
+  }
   let posicion = 0;
   return (
     <div key={`_${props.nombreCarrera}`} className={cssGR.generalRankingContainer}>
@@ -35,13 +51,13 @@ function RaceView(props) {
               <div className={rankPosClas}>{posicion}</div>              </div>
               <div className={cssGR.imgWrapper}>
                 <img
-                  src={props.pilotos[r.pilotId].photo}
-                  alt={"Foto " + props.pilotos[r.pilotId].name}
+                  src={arrayPilotos[r.pilotId].photo}
+                  alt={"Foto " + arrayPilotos[r.pilotId].name}
                   className={cssRaces.foto}
                 ></img>
               </div>
               <div className={cssRaces.rankName}>
-                {props.pilotos[r.pilotId].name} ({props.pilotos[r.pilotId].team}
+                {arrayPilotos[r.pilotId].name} ({arrayPilotos[r.pilotId].team}
                 )<br></br>
                 {"Tiempo: " + r.tiempo}
               </div>

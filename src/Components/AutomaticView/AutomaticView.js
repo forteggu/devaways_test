@@ -79,7 +79,7 @@ function AutomaticView() {
           }
         >
           <RaceView
-            nombreCarrera={raceState}
+            nombreCarrera={`Race ${raceState}`}
             carreras={mapaCarrerasTiempos}
             pilotos={mapaUsuarios}
           ></RaceView>

@@ -102,14 +102,31 @@ export function getDatosPilotos(){
 
 //Devueve los datos de la carrera ordenados por tiempo
 export function getDatosCarrera(nombreCarrera,carreras) {
- return Utils.orderRacePositionsByTime(carreras.filter(c => c.raceName === `Race ${nombreCarrera}`));
+ return Utils.orderRacePositionsByTime(carreras.filter(c => c.raceName === nombreCarrera));
 }
 
 //Devuelve la posición del piloto en cada carrera
-export function getDatosCarrerasPosicionPiloto(idPiloto,carreras){
-  if(carreras){
+export function getDatosCarrerasPosicionPiloto(idPiloto){
+  let carrerasOrdenadas = getClasificacionPorCarreras();
+  return  carrerasOrdenadas.map(carrera => {
+    let indexRes =carrera.raceRanking.findIndex(rp=> idPiloto === rp.pilotId ); 
+    return {raceName: carrera.raceName, raceTime:carrera.raceRanking[indexRes].tiempo , posInRace:indexRes+1}
+  });
+}
 
-  }else{
-
+export function getTeams(){
+  let arrayEquiposMiembros =[];
+  for(let v of RJson){
+    let tIndex = arrayEquiposMiembros.findIndex(t => t.teamName = v.team);
+    let tMember = {name:v.name, photo:v.picture, _id:v._id};
+    if(tIndex>-1){
+      arrayEquiposMiembros[tIndex].teamMembers = [...arrayEquiposMiembros[tIndex].teamMembers,tMember];
+    }else{
+      arrayEquiposMiembros.push({teamName: v.team, teamMembers:[tMember]});
+    }
   }
+}
+
+export function getMembersByTeam(teamName){
+  return RJson.filter(piloto => piloto.team === teamName);
 }
