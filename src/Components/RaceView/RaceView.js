@@ -1,30 +1,27 @@
 import * as DataApi from "../../Api/DataApi";
 import cssRaces from "./RaceView.module.css";
 import cssGR from "../GeneralRanking/GeneralRanking.module.css";
-import {useLocation} from 'react-router-dom';
+import { useLocation, Link } from "react-router-dom";
 function RaceView(props) {
-    const params = useLocation();
-    const raceName = params.state;
+  const params = useLocation();
+  const raceName = params.state;
 
   let carreraN;
   let arrayPilotos;
-  if(params && raceName){
+  if (params && raceName) {
     let tiemposPorCarreras = DataApi.getTiemposPorCarreras();
-    carreraN = DataApi.getDatosCarrera(
-      raceName,
-      tiemposPorCarreras
-    )[0];
+    carreraN = DataApi.getDatosCarrera(raceName, tiemposPorCarreras)[0];
     arrayPilotos = DataApi.getDatosPilotos();
-  }else{
-    carreraN= DataApi.getDatosCarrera(
-      props.nombreCarrera,
-      props.carreras
-    )[0];
+  } else {
+    carreraN = DataApi.getDatosCarrera(props.nombreCarrera, props.carreras)[0];
     arrayPilotos = props.pilotos;
   }
   let posicion = 0;
   return (
-    <div key={`_${props.nombreCarrera}`} className={cssGR.generalRankingContainer}>
+    <div
+      key={`_${props.nombreCarrera}`}
+      className={cssGR.generalRankingContainer}
+    >
       <h1 key={`_${props.nombreCarrera}_h1`}> {carreraN.raceName}</h1>
       <div
         key={`_${props.nombreCarrera}_raceResultsContainer`}
@@ -48,17 +45,32 @@ function RaceView(props) {
               className={cssGR.wrapper}
             >
               <div className={cssGR.posWrapper}>
-              <div className={rankPosClas}>{posicion}</div>              </div>
+                <div className={rankPosClas}>{posicion}</div>{" "}
+              </div>
               <div className={cssGR.imgWrapper}>
-                <img
-                  src={arrayPilotos[r.pilotId].photo}
-                  alt={"Foto " + arrayPilotos[r.pilotId].name}
-                  className={cssRaces.foto}
-                ></img>
+                <Link
+                  to={{
+                    pathname: "./racePilots",
+                    state: arrayPilotos[r.pilotId],
+                  }}
+                >
+                  <img
+                    src={arrayPilotos[r.pilotId].photo}
+                    alt={"Foto " + arrayPilotos[r.pilotId].name}
+                    className={cssRaces.foto}
+                  ></img>
+                </Link>
               </div>
               <div className={cssRaces.rankName}>
-                {arrayPilotos[r.pilotId].name} ({arrayPilotos[r.pilotId].team}
-                )<br></br>
+                <Link
+                  to={{
+                    pathname: "./racePilots",
+                    state: arrayPilotos[r.pilotId],
+                  }}
+                >
+                  {arrayPilotos[r.pilotId].name}
+                </Link>
+                <Link to={{ pathname: "./team", state: arrayPilotos[r.pilotId].team }} >({arrayPilotos[r.pilotId].team})</Link><br></br>
                 {"Tiempo: " + r.tiempo}
               </div>
             </div>

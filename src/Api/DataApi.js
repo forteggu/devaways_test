@@ -94,7 +94,8 @@ export function getDatosPilotos(){
       name: p.name,
       photo:p.picture,
       age: p.age,
-      team: p.team
+      team: p.team,
+      _id:p._id
     }
   }
   return pilotos;

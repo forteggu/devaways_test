@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom';
 let RacePilotsView = (props) => {
   const params = useLocation();
   const piloto = params.state;
+  console.log(piloto);
   const resultadosPiloto = DataApi.getDatosCarrerasPosicionPiloto(piloto._id);
 
   return (
