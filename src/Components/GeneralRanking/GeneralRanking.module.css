@@ -12,9 +12,12 @@
   flex-flow: column wrap;
   list-style: none;
   justify-content: flex-start;
-  align-content: center;
+  align-content: space-around;
   align-items: stretch;
-  max-height: 80vh;
+  max-height: 90vh;
+  width: 100vw;
+  margin-top: -2em;
+  padding: 0;
 }
 
 .generalRankingContainer ul li.wrapper {
