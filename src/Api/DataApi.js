@@ -99,6 +99,7 @@ export function getDatosPilotos(){
   }
   return pilotos;
 }
-export function getDatosCarrera(carrera) {
-  //getDatosPorCarrera().filter(carrera);
+export function getDatosCarrera(nombreCarrera,carreras) {
+  //console.log(nombreCarrera);
+  //return carreras.filter(c => c.raceName === nombreCarrera)
 }
