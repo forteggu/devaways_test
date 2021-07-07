@@ -1,5 +1,8 @@
 import cssGR from "./GeneralRanking.module.css";
 import * as DataApi from "../../Api/DataApi";
+import racePilotsView from "../RacePilotsView/RacePilotsView";
+import TeamsView from "../TeamsView/TeamsView";
+import { Link } from "react-router-dom";
 function GeneralRanking() {
   let generalRankingList = DataApi.getGeneralRanking();
 
@@ -25,14 +28,27 @@ function GeneralRanking() {
               </div>
 
               <div className={cssGR.imgWrapper}>
-                <img
-                  src={item.datosPiloto.photo}
-                  alt={"Foto " + item.datosPiloto.name}
-                  className={cssGR.foto}
-                ></img>
+                <Link
+                  to={{ pathname: `./racePilots`, state: {piloto: item.datosPiloto} }}
+                >
+                  <img
+                    src={item.datosPiloto.photo}
+                    alt={"Foto " + item.datosPiloto.name}
+                    className={cssGR.foto}
+                  ></img>
+                </Link>
               </div>
+
               <div className={cssGR.rankName}>
-                {item.datosPiloto.name}({item.datosPiloto.team})
+                <Link
+                  to={{ pathname: "./racePilots", state: item.datosPiloto }}
+                >
+                  {item.datosPiloto.name}
+                </Link>
+              </div>
+
+              <div className={cssGR.rankTeam}>
+                <Link to="./teams">{item.datosPiloto.team}</Link>
               </div>
             </div>
           );

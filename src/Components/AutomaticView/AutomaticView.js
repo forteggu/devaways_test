@@ -1,18 +1,13 @@
 import cssAV from "./AutomaticView.module.css";
 
 import GeneralRanking from "../GeneralRanking/GeneralRanking";
-import RacesTimesPositions from "../RacesTimesPositions/RacesTimesPositions";
 import * as DataApi from "../../Api/DataApi";
-import { orderRacePositionsByTime, sleep } from "../../Api/Utils";
+import { sleep } from "../../Api/Utils";
 import { useState, useEffect } from "react";
 import Constants from "../../Api/Constants";
 import RaceView from "../RaceView/RaceView";
 
 function AutomaticView() {
-  /*const [whatIsBeingShown, setWhatIsBeingShown] = useState({
-    view: Constants.genRank,
-    fade: true,
-  });*/
   const [whatIsBeingShown, setWhatIsBeingShown] = useState({
     view: Constants.raceView,
     fade: true,
@@ -20,23 +15,14 @@ function AutomaticView() {
   const mapaCarrerasTiempos = DataApi.getTiemposPorCarreras();
   const [raceState, setRaceState] = useState(0);
   const mapaUsuarios = DataApi.getDatosPilotos();
-  const mapaCarrerasPosiciones = mapaCarrerasTiempos.map((carrera) => {
-    return {
-      raceName: carrera.raceName,
-      raceRanking: orderRacePositionsByTime(carrera.raceRanking),
-    };
-  });
+
   function getNextView() {
-    let nextView;
-    if (whatIsBeingShown.view === Constants.genRank) {
-      nextView = Constants.raceView;
-    } else {
-      nextView = Constants.genRank;
-    } 
-    return nextView;
+    return whatIsBeingShown.view === Constants.genRank
+      ? Constants.raceView
+      : Constants.genRank;
   }
   function transitionToNext() {
-    let nextView=getNextView();
+    let nextView = getNextView();
     //Cambiamos el estado fadeState para disparar el fadeout
     setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
     //Esperamos que termine la transición
@@ -45,7 +31,7 @@ function AutomaticView() {
       //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
       setWhatIsBeingShown({ view: nextView, fade: false });
       sleep(0).then(() => {
-        if(nextView === Constants.raceView){
+        if (nextView === Constants.raceView) {
           setRaceState(0);
         }
         setWhatIsBeingShown({ view: nextView, fade: true });
@@ -56,7 +42,7 @@ function AutomaticView() {
     //Definimos el funcionamiento del interval
     let IntervalTimer = setInterval(() => {
       transitionToNext();
-    }, 3000000);
+    }, Constants.transitionTimeViews);
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
       clearInterval(IntervalTimer);
@@ -74,7 +60,7 @@ function AutomaticView() {
         } else {
           setRaceState(raceState + 1);
         }
-      }, 10000000);
+      }, Constants.transitionTimeRaces);
     }
 
     return () => {
@@ -84,7 +70,6 @@ function AutomaticView() {
   });
   return (
     <div className={cssAV.maxHeight}>
-      {console.log(raceState)}
       {whatIsBeingShown.view === Constants.raceView ? (
         <div
           className={
@@ -109,36 +94,6 @@ function AutomaticView() {
           }
         >
           <GeneralRanking></GeneralRanking>
-        </div>
-      ) : null}
-      {whatIsBeingShown.view === Constants.timeMode ? (
-        <div
-          className={
-            whatIsBeingShown.fade
-              ? cssAV.fadeInAnimation
-              : cssAV.fadeOutAnimation
-          }
-        >
-          <RacesTimesPositions
-            listadoCarreras={mapaCarrerasTiempos}
-            pilotos={mapaUsuarios}
-            mode={Constants.timeMode}
-          ></RacesTimesPositions>
-        </div>
-      ) : null}
-      {whatIsBeingShown.view === Constants.posMode ? (
-        <div
-          className={
-            whatIsBeingShown.fade
-              ? cssAV.fadeInAnimation
-              : cssAV.fadeOutAnimation
-          }
-        >
-          <RacesTimesPositions
-            listadoCarreras={mapaCarrerasPosiciones}
-            pilotos={mapaUsuarios}
-            mode={Constants.posMode}
-          ></RacesTimesPositions>
         </div>
       ) : null}
     </div>

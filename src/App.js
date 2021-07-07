@@ -3,6 +3,8 @@ import GeneralRanking from "./Components/GeneralRanking/GeneralRanking";
 import AutomaticView from "./Components/AutomaticView/AutomaticView";
 import Header from "./Components/Header/Header";
 import { Route, Switch, Redirect } from "react-router-dom";
+import RacePilotsView from "./Components/RacePilotsView/RacePilotsView";
+import TeamsView from "./Components/TeamsView/TeamsView";
 
 function App() {
   return (
@@ -21,6 +23,12 @@ function App() {
           </Route>
           <Route path="/automaticView">
             <AutomaticView></AutomaticView>
+          </Route>
+          <Route path="/racePilots">
+            <RacePilotsView></RacePilotsView>
+          </Route>
+          <Route path="/teams">
+            <TeamsView></TeamsView>
           </Route>
         </Switch>
       </main>

@@ -14,7 +14,7 @@ export function getGeneralRanking() {
   for (let n = 0; n < numCarreras; n++) {
     //Recorremos las carreras
     let datosN = RJson.map((racePilot) => {
-      return { datosPiloto:{name: racePilot.name, photo:racePilot.picture, age: racePilot.age, team:racePilot.team}, tiempo: racePilot.races[n].time }; //obtenemos los tiempos de cada piloto para cada carrera, creando así un mapa más sencillo de trabajar
+      return { datosPiloto:{_id:racePilot._id ,name: racePilot.name, photo:racePilot.picture, age: racePilot.age, team:racePilot.team}, tiempo: racePilot.races[n].time }; //obtenemos los tiempos de cada piloto para cada carrera, creando así un mapa más sencillo de trabajar
     });
     datosN.sort(
       (a, b) => Utils.fixTimeStamp(a.tiempo) > Utils.fixTimeStamp(b.tiempo)
@@ -103,5 +103,13 @@ export function getDatosPilotos(){
 //Devueve los datos de la carrera ordenados por tiempo
 export function getDatosCarrera(nombreCarrera,carreras) {
  return Utils.orderRacePositionsByTime(carreras.filter(c => c.raceName === `Race ${nombreCarrera}`));
+}
 
+//Devuelve la posición del piloto en cada carrera
+export function getDatosCarrerasPosicionPiloto(idPiloto,carreras){
+  if(carreras){
+
+  }else{
+
+  }
 }

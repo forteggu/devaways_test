@@ -6,7 +6,6 @@ function RaceView(props) {
     props.nombreCarrera,
     props.carreras
   )[0];
-  console.log(carreraN);
   let posicion = 0;
   return (
     <div key={`_${props.nombreCarrera}`} className={cssGR.generalRankingContainer}>
