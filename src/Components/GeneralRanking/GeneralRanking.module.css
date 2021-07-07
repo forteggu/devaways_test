@@ -7,32 +7,68 @@
 }
 
 .generalRankingContainer ul {
-  display: block;
-  margin-left: 33.3vw;
-  width: 33.3vw;
+  display: flex;
+  transform: scale(0.9);
+  flex-flow: column wrap;
+  list-style: none;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: stretch;
+  max-height: 80vh;
 }
 
 .generalRankingContainer ul li.wrapper {
   background-color: blueviolet;
-  display: flex;
+  display: inline-flex;
+  margin: 0.5em;
+  justify-content: space-around;
+  align-content: space-around;
   align-items: center;
-  align-content: center;
-  justify-content: center;
-  text-align: left;
-  margin: 1.5em;
 }
 
 .generalRankingContainer ul li.wrapper > * {
   flex: 1;
-  text-align: center;
+  width: auto;
+  margin-left: auto;
 }
-.rankPosition {
-  font-size: 3em;
+
+
+.generalRankingContainer ul li.wrapper > div.imgNameContainer {
+  flex: 1;
+  width: auto;
+  margin-left: auto;
+  display: inline-flex;
+  margin: 0.5em;
+  margin-left: -2em;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: center;
 }
+
 
 .foto {
   margin: 1em;
+  transform: scale(0.8);
+  margin-left: -3em;
+  flex-grow: 1;
 }
 .rankName {
-  flex-grow: 3;
+  transform: scale(1.2);
+  width: 100%;
+  flex-grow: 2;
+}
+
+.firstPlace{
+  color:gold;
+}
+.secondPlace {
+  color: silver;
+}
+
+.thirdPlace {
+  color: brown;
+}
+
+.rankPosition {
+  font-size: 3em;
 }
