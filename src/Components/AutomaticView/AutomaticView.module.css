@@ -1,8 +1,14 @@
 .fadeOutAnimation{
     transition: opacity 1s;
     opacity: 0;
+    height: 100%;
 }
 .fadeInAnimation{
     transition: opacity 1s;
     opacity: 1;
+    height: 100%;
+}
+
+.maxHeight{
+    height:100%;
 }

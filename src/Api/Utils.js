@@ -36,11 +36,9 @@ export function setPole(ranking) {
 }
 
 export function orderRacePositionsByTime(race) {
-  return race.sort(
-    (a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo)
-  );
+  return race.sort((a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo));
 }
 
 export const sleep = (time) => {
-  return new Promise(prom => setTimeout(prom, time))
-}
+  return new Promise((prom) => setTimeout(prom, time));
+};

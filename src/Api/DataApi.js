@@ -99,6 +99,9 @@ export function getDatosPilotos(){
   }
   return pilotos;
 }
+
+//Devueve los datos de la carrera ordenados por tiempo
 export function getDatosCarrera(nombreCarrera,carreras) {
-  return carreras.filter(c => c.raceName === `Race ${nombreCarrera}`)
+ return Utils.orderRacePositionsByTime(carreras.filter(c => c.raceName === `Race ${nombreCarrera}`));
+
 }

@@ -56,7 +56,7 @@ function AutomaticView() {
     //Definimos el funcionamiento del interval
     let IntervalTimer = setInterval(() => {
       transitionToNext();
-    }, 30000);
+    }, 3000000);
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
       clearInterval(IntervalTimer);
@@ -74,7 +74,7 @@ function AutomaticView() {
         } else {
           setRaceState(raceState + 1);
         }
-      }, 100000);
+      }, 10000000);
     }
 
     return () => {
@@ -83,7 +83,7 @@ function AutomaticView() {
     };
   });
   return (
-    <div>
+    <div className={cssAV.maxHeight}>
       {console.log(raceState)}
       {whatIsBeingShown.view === Constants.raceView ? (
         <div
