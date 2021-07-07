@@ -1,68 +1,11 @@
 .generalRankingContainer {
   background-color: gainsboro;
   text-align: left;
+  height: 100%;
+  padding-left: 2em;
 }
-.generalRankingContainer h1 {
-  text-align: center;
-}
-
-.generalRankingContainer ul {
-  display: flex;
-  transform: scale(0.9);
-  flex-flow: column wrap;
-  list-style: none;
-  justify-content: flex-start;
-  align-content: space-around;
-  align-items: stretch;
-  max-height: 90vh;
-  width: 100vw;
-  margin-top: -2em;
-  padding: 0;
-}
-
-.generalRankingContainer ul li.wrapper {
-  background-color: blueviolet;
-  display: inline-flex;
-  margin: 0.5em;
-  justify-content: space-around;
-  align-content: space-around;
-  align-items: center;
-}
-
-.generalRankingContainer ul li.wrapper > * {
-  flex: 1;
-  width: auto;
-  margin-left: auto;
-}
-
-
-.generalRankingContainer ul li.wrapper > div.imgNameContainer {
-  flex: 1;
-  width: auto;
-  margin-left: auto;
-  display: inline-flex;
-  margin: 0.5em;
-  margin-left: -2em;
-  justify-content: space-around;
-  align-content: space-around;
-  align-items: center;
-}
-
-
-.foto {
-  margin: 1em;
-  transform: scale(0.8);
-  margin-left: -3em;
-  flex-grow: 1;
-}
-.rankName {
-  transform: scale(1.2);
-  width: 100%;
-  flex-grow: 2;
-}
-
-.firstPlace{
-  color:gold;
+.firstPlace {
+  color: gold;
 }
 .secondPlace {
   color: silver;
@@ -73,5 +16,36 @@
 }
 
 .rankPosition {
-  font-size: 3em;
+  font-size: 2em;
+  text-align: center;
+}
+
+.rankingsContainer {
+  height: 100%;
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 1em;
+}
+
+.wrapper {
+  display: inline-flex;
+  margin-bottom: 0;
+  background-color: azure;
+  border: solid 2px blue;
+  margin: 0.25em 1em;
+  min-width: 25vw;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: space-around;
+}
+
+.wrapper > * {
+  margin-right: 1.5em;
+
+}
+.posWrapper {
+  min-width: 3.5em;
+}
+.imgWrapper {
+  padding-top: 0.25em;
 }

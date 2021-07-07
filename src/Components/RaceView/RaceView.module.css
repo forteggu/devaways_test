@@ -1,0 +1,17 @@
+.raceContainer{
+    display: block;
+}
+
+.raceResultsContainer{
+    display: flex;
+    transform: scale(0.9);
+    flex-flow: column wrap;
+    list-style: none;
+    justify-content: flex-start;
+    align-content: space-around;
+    align-items: stretch;
+    max-height: 90vh;
+    width: auto;
+    margin-top: -2em;
+    padding: 0;
+}

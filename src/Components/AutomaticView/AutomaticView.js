@@ -27,16 +27,13 @@ function AutomaticView() {
     };
   });
   function getNextView() {
-    /*let nextView;
+    let nextView;
     if (whatIsBeingShown.view === Constants.genRank) {
-      nextView = Constants.timeMode;
-    } else if (whatIsBeingShown.view === Constants.timeMode) {
-      nextView = Constants.posMode;
+      nextView = Constants.raceView;
     } else {
       nextView = Constants.genRank;
-    }
-    return nextView;*/
-    return Constants.genRank;
+    } 
+    return nextView;
   }
   function transitionToNext() {
     let nextView=getNextView();
@@ -59,10 +56,9 @@ function AutomaticView() {
     //Definimos el funcionamiento del interval
     let IntervalTimer = setInterval(() => {
       transitionToNext();
-    }, 10000);
+    }, 30000);
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
-      console.log("cleaning the changeview interval");
       clearInterval(IntervalTimer);
     };
   });
@@ -72,18 +68,17 @@ function AutomaticView() {
     //Definimos el funcionamiento del interval
     if (whatIsBeingShown.view === Constants.raceView) {
       IntervalTimerRaceView = setInterval(() => {
-        if (raceState + 1 > mapaCarrerasTiempos.length) {
+        if (raceState + 1 >= mapaCarrerasTiempos.length) {
           clearInterval(IntervalTimerRaceView);
           transitionToNext();
         } else {
           setRaceState(raceState + 1);
         }
-      }, 1000);
+      }, 100000);
     }
 
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
-      console.log("cleaning the IntervalTimerRaceView");
       clearInterval(IntervalTimerRaceView);
     };
   });
@@ -99,8 +94,9 @@ function AutomaticView() {
           }
         >
           <RaceView
-            nombreCarrera={`Race ${raceState}`}
+            nombreCarrera={raceState}
             carreras={mapaCarrerasTiempos}
+            pilotos={mapaUsuarios}
           ></RaceView>
         </div>
       ) : null}

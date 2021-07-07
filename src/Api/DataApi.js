@@ -100,6 +100,5 @@ export function getDatosPilotos(){
   return pilotos;
 }
 export function getDatosCarrera(nombreCarrera,carreras) {
-  //console.log(nombreCarrera);
-  //return carreras.filter(c => c.raceName === nombreCarrera)
+  return carreras.filter(c => c.raceName === `Race ${nombreCarrera}`)
 }
