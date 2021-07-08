@@ -1,7 +1,5 @@
 import cssGR from "./GeneralRanking.module.css";
 import * as DataApi from "../../Api/DataApi";
-import racePilotsView from "../RacePilotsView/RacePilotsView";
-import TeamsView from "../TeamsView/TeamsView";
 import { Link } from "react-router-dom";
 function GeneralRanking() {
   let generalRankingList = DataApi.getGeneralRanking();
@@ -32,7 +30,7 @@ function GeneralRanking() {
                   to={{ pathname: "./racePilots", state: item.datosPiloto }}
                 >
                   <img
-                    src={item.datosPiloto.photo}
+                    src={item.datosPiloto.picture}
                     alt={"Foto " + item.datosPiloto.name}
                     className={cssGR.foto}
                   ></img>

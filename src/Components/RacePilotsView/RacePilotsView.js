@@ -1,19 +1,16 @@
-import { useState } from "react";
 import { useLocation } from "react-router";
 import cssPV from "./RacePilotsView.module.css";
 import * as DataApi from "../../Api/DataApi";
 import { Link } from "react-router-dom";
 let RacePilotsView = (props) => {
   const params = useLocation();
-  const piloto = params.state;
-  console.log(piloto);
+  const piloto = (props && props.piloto) || params.state;
   const resultadosPiloto = DataApi.getDatosCarrerasPosicionPiloto(piloto._id);
-
   return (
     <div className={cssPV.wrapper}>
       <div className={cssPV.personalInfoContainer}>
         <div>
-          <img src={piloto.photo} alt={piloto.name}></img>
+          <img src={piloto.picture} alt={piloto.name}></img>
         </div>
         <div>
           <div>
@@ -27,7 +24,6 @@ let RacePilotsView = (props) => {
           <div>
             <span>Equipo:</span>
             <span>
-              {" "}
               <Link to={{ pathname: "./team", state: piloto.team }}>
                 {piloto.team}
               </Link>

@@ -1,7 +1,7 @@
 .generalRankingContainer {
   background-color: gainsboro;
   text-align: left;
-  height: 100%; 
+  height: 100%;
 }
 .firstPlace {
   color: gold;
@@ -40,7 +40,6 @@
 
 .wrapper > * {
   margin-right: 1.5em;
-
 }
 .posWrapper {
   min-width: 3.5em;
@@ -48,12 +47,14 @@
 .imgWrapper {
   padding-top: 0.25em;
 }
-.rankTeam{
+.rankTeam {
   text-align: right;
   margin-left: auto;
 }
 
-.rankTeam:hover,.imgWrapper:hover,.rankName:hover{
+.rankTeam:hover,
+.imgWrapper:hover,
+.rankName:hover {
   cursor: pointer;
-  transform: scale(1.2);
+  transform: scale(1.1);
 }

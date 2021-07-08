@@ -14,8 +14,10 @@ function TeamsView() {
       <div className={cssTV.wrapper}>
         <h2>Members</h2>
         <div className={cssTV.membersWrapper}>
+          
           {teamMembers.map((member) => {
-            return (
+          
+          console.log(member);return (
               <Link
                 key={member.name}
                 to={{ pathname: "./racePilots", state: member }}

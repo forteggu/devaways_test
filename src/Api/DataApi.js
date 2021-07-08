@@ -14,7 +14,7 @@ export function getGeneralRanking() {
   for (let n = 0; n < numCarreras; n++) {
     //Recorremos las carreras
     let datosN = RJson.map((racePilot) => {
-      return { datosPiloto:{_id:racePilot._id ,name: racePilot.name, photo:racePilot.picture, age: racePilot.age, team:racePilot.team}, tiempo: racePilot.races[n].time }; //obtenemos los tiempos de cada piloto para cada carrera, creando así un mapa más sencillo de trabajar
+      return { datosPiloto:{_id:racePilot._id ,name: racePilot.name, picture:racePilot.picture, age: racePilot.age, team:racePilot.team}, tiempo: racePilot.races[n].time }; //obtenemos los tiempos de cada piloto para cada carrera, creando así un mapa más sencillo de trabajar
     });
     datosN.sort(
       (a, b) => Utils.fixTimeStamp(a.tiempo) > Utils.fixTimeStamp(b.tiempo)
@@ -92,7 +92,7 @@ export function getDatosPilotos(){
   for (let p of RJson){
     pilotos[p._id] = {
       name: p.name,
-      photo:p.picture,
+      picture:p.picture,
       age: p.age,
       team: p.team,
       _id:p._id
@@ -119,7 +119,7 @@ export function getTeams(){
   let arrayEquiposMiembros =[];
   for(let v of RJson){
     let tIndex = arrayEquiposMiembros.findIndex(t => t.teamName = v.team);
-    let tMember = {name:v.name, photo:v.picture, _id:v._id};
+    let tMember = {name:v.name, picture:v.picture, _id:v._id};
     if(tIndex>-1){
       arrayEquiposMiembros[tIndex].teamMembers = [...arrayEquiposMiembros[tIndex].teamMembers,tMember];
     }else{

@@ -5,20 +5,29 @@ import { sleep } from "../../Api/Utils";
 import { useState, useEffect } from "react";
 import Constants from "../../Api/Constants";
 import RaceView from "../RaceView/RaceView";
+import RacePilotsView from "../RacePilotsView/RacePilotsView";
 
 function AutomaticView() {
   const [whatIsBeingShown, setWhatIsBeingShown] = useState({
-    view: Constants.raceView,
+    view: Constants.racePilotsDetails,
     fade: true,
   });
-  const mapaCarrerasTiempos = DataApi.getTiemposPorCarreras();
+  const mapaCarrerasTiempos = DataApi.getClasificacionPorCarreras();
   const [raceState, setRaceState] = useState(0);
   const mapaUsuarios = DataApi.getDatosPilotos();
+  const mapaKeysUsuarios = Object.keys(mapaUsuarios);
+  const [pilotsState, setPilotsState] = useState(0);
 
   function getNextView() {
-    return whatIsBeingShown.view === Constants.genRank
-      ? Constants.raceView
-      : Constants.genRank;
+    let nextView;
+    if (whatIsBeingShown.view === Constants.genRank) {
+      nextView = Constants.raceView;
+    } else if (whatIsBeingShown.view === Constants.raceView) {
+      nextView = Constants.racePilotsDetails;
+    } else {
+      nextView = Constants.genRank;
+    }
+    return nextView;
   }
   function transitionToNext() {
     let nextView = getNextView();
@@ -32,6 +41,8 @@ function AutomaticView() {
       sleep(0).then(() => {
         if (nextView === Constants.raceView) {
           setRaceState(0);
+        }else if (nextView === Constants.racePilotsDetails) {
+          setPilotsState(0);
         }
         setWhatIsBeingShown({ view: nextView, fade: true });
       });
@@ -67,8 +78,28 @@ function AutomaticView() {
       clearInterval(IntervalTimerRaceView);
     };
   });
+
+  useEffect(() => {
+    let IntervalTimerPilots;
+    //Definimos el funcionamiento del interval
+    if (whatIsBeingShown.view === Constants.racePilotsDetails) {
+      IntervalTimerPilots = setInterval(() => {
+        if (pilotsState + 1 >= mapaKeysUsuarios.length) {
+          clearInterval(IntervalTimerPilots);
+          transitionToNext();
+        } else {
+          setPilotsState(pilotsState + 1);
+        }
+      }, Constants.transitionTimerPilots);
+    }
+
+    return () => {
+      // cleaning up interval intervalWhatIsBeingShown;
+      clearInterval(IntervalTimerPilots);
+    };
+  });
   return (
-    <div className='maxHeight'>
+    <div className="maxHeight">
       {whatIsBeingShown.view === Constants.raceView ? (
         <div
           className={
@@ -93,6 +124,19 @@ function AutomaticView() {
           }
         >
           <GeneralRanking></GeneralRanking>
+        </div>
+      ) : null}
+      {whatIsBeingShown.view === Constants.racePilotsDetails ? (
+        <div
+          className={
+            whatIsBeingShown.fade
+              ? cssAV.fadeInAnimation
+              : cssAV.fadeOutAnimation
+          }
+        >
+          <RacePilotsView
+            piloto={mapaUsuarios[mapaKeysUsuarios[pilotsState]]}
+          ></RacePilotsView>
         </div>
       ) : null}
     </div>

@@ -16,7 +16,7 @@ function RacesTimesPositions(props) {
                         <div className={cssRT.raceResultsContainer}>
                           <div className={cssRT.raceRow}>
                             <img
-                              src={props.pilotos[r.pilotId].photo}
+                              src={props.pilotos[r.pilotId].picture}
                               alt={"Foto " + props.pilotos[r.pilotId].name}
                               className={cssRT.foto}
                             ></img>
@@ -35,7 +35,7 @@ function RacesTimesPositions(props) {
                           <div className={cssRT.raceRow}>
                             <div>{position}</div>
                             <img
-                              src={props.pilotos[r.pilotId].photo}
+                              src={props.pilotos[r.pilotId].picture}
                               alt={"Foto " + props.pilotos[r.pilotId].name}
                               className={cssRT.foto}
                             ></img>

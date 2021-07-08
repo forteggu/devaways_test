@@ -54,7 +54,7 @@ function RaceView(props) {
                   }}
                 >
                   <img
-                    src={arrayPilotos[r.pilotId].photo}
+                    src={arrayPilotos[r.pilotId].picture}
                     alt={"Foto " + arrayPilotos[r.pilotId].name}
                     className={cssRaces.foto}
                   ></img>
