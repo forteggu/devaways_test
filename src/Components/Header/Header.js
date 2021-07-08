@@ -1,5 +1,6 @@
 import cssHeader from "./Header.module.css";
 import Nav from "../Nav/Nav";
+import {Link }from "react-router-dom";
 
 function Header(props) {
   const aNavOptions = [
@@ -14,12 +15,7 @@ function Header(props) {
   return (
     <header className={cssHeader.header}>
       <div className={cssHeader.titleLogoContainer}>
-        <img
-          className={cssHeader.logo}
-          alt="Racing logo"
-          src="https://w7.pngwing.com/pngs/130/310/png-transparent-kart-racing-electric-go-kart-kart-circuit-go-cart-thumbnail.png"
-        />
-        <h1>{props.headerText}</h1>
+      <h1><Link to='/'>{props.headerText}</Link></h1>
       </div>
       <div className={cssHeader.headerNavContainer}>
         <Nav options={aNavOptions}></Nav>
@@ -27,5 +23,4 @@ function Header(props) {
     </header>
   );
 }
-
 export default Header;

@@ -8,7 +8,7 @@ function Nav(props) {
         {props.options.map((option) => {
           return (
             <Link key={'Link_'+option.id} to={option.linkTo}>
-            <li key={option.id} id={option.id}>
+            <li className='gradientTitle' key={option.id} id={option.id}>
               {option.text}
             </li>
             </Link>

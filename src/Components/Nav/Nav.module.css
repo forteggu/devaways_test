@@ -6,6 +6,8 @@
 }
 .horizontalNav ul li {
     margin: 1em;
+    font-size:1em;
+    text-decoration: none;
 }
 .horizontalNav ul li:hover {
     transform: scale(1.1);

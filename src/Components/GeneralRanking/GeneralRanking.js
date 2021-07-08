@@ -6,7 +6,7 @@ function GeneralRanking() {
 
   return (
     <div className={cssGR.generalRankingContainer}>
-      <h1>Clasificación Global</h1>
+      <h1 className='gradientTitle'>Clasificación Global</h1>
       <div className={cssGR.rankingsContainer}>
         {generalRankingList.map((item) => {
           let rankPosClas;

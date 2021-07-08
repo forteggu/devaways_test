@@ -1,32 +1,47 @@
-.wrapper{
-   height: 100%;
-   display: flex;
+.wrapper {
+  height: 100%;
+  display: flex;
+  font-size: 1.2em;
+  margin-top: 2em;
 }
-.personalInfoContainer{
-margin: auto;
-flex:1 1 auto;
-text-align: center;
+.personalInfoContainer {
+  margin: auto;
+  flex: 1 1 auto;
+  text-align: center;
+}
+.personalInfo {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: flex-start;
+  align-content: center;
+  justify-content: center;
+}
+.personalInfo >div {
+  margin: 1em;
+}
+.personalInfo div span{
+    font-weight: bold;
+}
+.racesContainer {
+  flex: 1 1 auto;
+  width: auto;
+  margin: auto;
+}
+.tableWrapper {
+  height: 100%;
+  margin-left: auto;
+}
+.th,
+.td {
+  flex: 1;
 }
 
-.racesContainer{
-    flex:1 1 auto;
-    width: auto;
-    margin: auto;
-    
-}
-.tableWrapper{
-    height: 100%;
-    margin-left: auto;
-}
-.th, .td{
-    flex:1
-}
-
-.tableHeader, .tr{
-    display: flex;
-    min-width: 15em;
-    max-width: 20em;
-    padding: 0.5em;
-    text-align: left;
-    border: solid 2px black;
+.tableHeader,
+.tr {
+  display: flex;
+  min-width: 15em;
+  max-width: 20em;
+  padding: 0.5em;
+  text-align: left;
+  border: solid 2px black;
 }

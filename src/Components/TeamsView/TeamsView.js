@@ -10,9 +10,9 @@ function TeamsView() {
   console.log(teamMembers);
   return (
     <div className="maxHeight">
-      <h1>{teamName}</h1>
       <div className={cssTV.wrapper}>
-        <h2>Members</h2>
+      <h1 className='gradientTitle'>Miembros del Equipo {teamName}</h1>
+
         <div className={cssTV.membersWrapper}>
           
           {teamMembers.map((member) => {

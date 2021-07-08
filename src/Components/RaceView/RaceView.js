@@ -21,7 +21,7 @@ function RaceView(props) {
       key={`_${props.nombreCarrera}`}
       className={cssGR.generalRankingContainer}
     >
-      <h1 key={`_${props.nombreCarrera}_h1`}> {carreraN.raceName}</h1>
+      <h1 className='gradientTitle' key={`_${props.nombreCarrera}_h1`}> {carreraN.raceName}</h1>
       <div
         key={`_${props.nombreCarrera}_raceResultsContainer`}
         className={cssGR.rankingsContainer}
