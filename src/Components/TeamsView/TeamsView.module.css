@@ -1,0 +1,21 @@
+.wrapper {
+  height: 100%;
+}
+.wrapper h2 {
+  margin: 2em;
+  text-align: center;
+}
+
+.membersWrapper {
+  width: auto;
+  margin: auto;
+  display: flex;
+  justify-content: space-around;
+  align-content: space-around;
+  align-items: stretch;
+  text-align: center;
+  flex-flow: row wrap;
+}
+.memberInfoContainer > * {
+  margin: 1em;
+}

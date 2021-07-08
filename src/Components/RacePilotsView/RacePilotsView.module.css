@@ -1,3 +1,32 @@
+.wrapper{
+   height: 100%;
+   display: flex;
+}
 .personalInfoContainer{
+margin: auto;
+flex:1 1 auto;
+text-align: center;
+}
 
+.racesContainer{
+    flex:1 1 auto;
+    width: auto;
+    margin: auto;
+    
+}
+.tableWrapper{
+    height: 100%;
+    margin-left: auto;
+}
+.th, .td{
+    flex:1
+}
+
+.tableHeader, .tr{
+    display: flex;
+    min-width: 15em;
+    max-width: 20em;
+    padding: 0.5em;
+    text-align: left;
+    border: solid 2px black;
 }

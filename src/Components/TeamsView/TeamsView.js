@@ -1,6 +1,7 @@
 import * as DataApi from "../../Api/DataApi";
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import cssTV from "./TeamsView.module.css";
 
 function TeamsView() {
   const params = useLocation();
@@ -8,21 +9,27 @@ function TeamsView() {
   const teamMembers = DataApi.getMembersByTeam(teamName);
   console.log(teamMembers);
   return (
-    <div>
-      <h1>Members</h1>
-      <div>
-        {teamMembers.map((member) => {
-          return (
-            <Link key = {member.name} to={{ pathname: "./racePilots", state: member }}>
-              <div >
-                <div>
-                  <img src={member.picture} alt={`Foto_${member.name}`}></img>
+    <div className="maxHeight">
+      <h1>{teamName}</h1>
+      <div className={cssTV.wrapper}>
+        <h2>Members</h2>
+        <div className={cssTV.membersWrapper}>
+          {teamMembers.map((member) => {
+            return (
+              <Link
+                key={member.name}
+                to={{ pathname: "./racePilots", state: member }}
+              >
+                <div className={cssTV.memberInfoContainer}>
+                  <div>
+                    <img src={member.picture} alt={`Foto_${member.name}`}></img>
+                  </div>
+                  <div>{member.name}</div>
                 </div>
-                <div>{member.name}</div>
-              </div>
-            </Link>
-          );
-        })}
+              </Link>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

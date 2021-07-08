@@ -1,5 +1,4 @@
 import cssAV from "./AutomaticView.module.css";
-
 import GeneralRanking from "../GeneralRanking/GeneralRanking";
 import * as DataApi from "../../Api/DataApi";
 import { sleep } from "../../Api/Utils";
@@ -69,7 +68,7 @@ function AutomaticView() {
     };
   });
   return (
-    <div className={cssAV.maxHeight}>
+    <div className='maxHeight'>
       {whatIsBeingShown.view === Constants.raceView ? (
         <div
           className={

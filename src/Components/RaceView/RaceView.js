@@ -5,7 +5,6 @@ import { useLocation, Link } from "react-router-dom";
 function RaceView(props) {
   const params = useLocation();
   const raceName = params.state;
-
   let carreraN;
   let arrayPilotos;
   if (params && raceName) {
@@ -70,7 +69,7 @@ function RaceView(props) {
                 >
                   {arrayPilotos[r.pilotId].name}
                 </Link>
-                <Link to={{ pathname: "./team", state: arrayPilotos[r.pilotId].team }} >({arrayPilotos[r.pilotId].team})</Link><br></br>
+                <Link to={{ pathname: "./team", state: arrayPilotos[r.pilotId].team }} >&nbsp;({arrayPilotos[r.pilotId].team})</Link><br></br>
                 {"Tiempo: " + r.tiempo}
               </div>
             </div>
