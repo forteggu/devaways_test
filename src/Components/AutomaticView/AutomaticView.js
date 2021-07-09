@@ -18,6 +18,10 @@ function AutomaticView() {
   const mapaKeysUsuarios = Object.keys(mapaUsuarios);
   const [pilotsState, setPilotsState] = useState(0);
 
+  /**
+   * Rotación de vistas: usuarios -> carreras -> clas. Gen
+   * @returns nextView
+   */
   function getNextView() {
     let nextView;
     if (whatIsBeingShown.view === Constants.genRank) {
@@ -68,7 +72,17 @@ function AutomaticView() {
           clearInterval(IntervalTimerRaceView);
           transitionToNext();
         } else {
-          setRaceState(raceState + 1);
+          //Cambiamos el estado para que se dispare el evento de fade
+          setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
+          sleep(1000).then(() => {
+            //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
+            //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
+            sleep(0).then(() => {
+              setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: true });
+              setRaceState(raceState + 1);
+            });
+          });
+          
         }
       }, Constants.transitionTimeRaces);
     }
@@ -81,14 +95,22 @@ function AutomaticView() {
 
   useEffect(() => {
     let IntervalTimerPilots;
-    //Definimos el funcionamiento del interval
+    //Definimos el funcionamiento del interval -- mismo funcionamiento que el transitionTimesRaces
     if (whatIsBeingShown.view === Constants.racePilotsDetails) {
       IntervalTimerPilots = setInterval(() => {
         if (pilotsState + 1 >= mapaKeysUsuarios.length) {
           clearInterval(IntervalTimerPilots);
           transitionToNext();
         } else {
-          setPilotsState(pilotsState + 1);
+          setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
+          sleep(1000).then(() => {
+            //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
+            //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
+            sleep(0).then(() => {
+              setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: true });
+              setPilotsState(pilotsState + 1);
+            });
+          });
         }
       }, Constants.transitionTimerPilots);
     }

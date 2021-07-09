@@ -15,7 +15,7 @@ let RacePilotsView = (props) => {
           <div>
             <img src={piloto.picture} alt={piloto.name}></img>
           </div>
-          <div class={cssPV.personalInfo}>
+          <div className={cssPV.personalInfo}>
             <div>
               <span>Nombre: </span>
               {piloto.name}

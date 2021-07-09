@@ -3,7 +3,10 @@
   height: 100%;
 }
 .firstPlace {
-  color: gold;
+  background: linear-gradient(#ffdc91 , #fdbf06 );
+       -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
 }
 .secondPlace {
   color: silver;

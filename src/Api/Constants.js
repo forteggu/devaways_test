@@ -4,9 +4,9 @@ const Constants = {
     genRank: "General Ranking",
     raceView: "Race View",
     racePilotsDetails: "Race Pilots View",
-    transitionTimeRaces: 1000,/*2000*/ 
-    transitionTimeViews: 6000,/*10000*/ 
-    transitionTimerPilots:1000
+    transitionTimeRaces: 5000,
+    transitionTimeViews: 10000, 
+    transitionTimerPilots:5000
 }
 
 export default Constants;

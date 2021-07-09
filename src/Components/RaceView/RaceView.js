@@ -8,7 +8,7 @@ function RaceView(props) {
   let carreraN;
   let arrayPilotos;
   if (params && raceName) {
-    let tiemposPorCarreras = DataApi.getTiemposPorCarreras();
+    let tiemposPorCarreras = DataApi.getClasificacionPorCarreras();
     carreraN = DataApi.getDatosCarrera(raceName, tiemposPorCarreras)[0];
     arrayPilotos = DataApi.getDatosPilotos();
   } else {
