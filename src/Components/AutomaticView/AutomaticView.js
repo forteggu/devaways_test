@@ -24,6 +24,7 @@ function AutomaticView() {
    */
   function getNextView() {
     let nextView;
+
     if (whatIsBeingShown.view === Constants.genRank) {
       nextView = Constants.raceView;
     } else if (whatIsBeingShown.view === Constants.raceView) {
@@ -31,59 +32,72 @@ function AutomaticView() {
     } else {
       nextView = Constants.genRank;
     }
-    return nextView;
+  return nextView;
   }
-  function transitionToNext() {
+  async function transitionToNext(intervalObject) {
+    clearInterval(intervalObject);
     let nextView = getNextView();
     //Cambiamos el estado fadeState para disparar el fadeout
     setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
     //Esperamos que termine la transición
-    sleep(1000).then(() => {
-      //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
-      //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
-      setWhatIsBeingShown({ view: nextView, fade: false });
-      sleep(0).then(() => {
-        if (nextView === Constants.raceView) {
-          setRaceState(0);
-        }else if (nextView === Constants.racePilotsDetails) {
-          setPilotsState(0);
-        }
-        setWhatIsBeingShown({ view: nextView, fade: true });
-      });
-    });
+    await sleep(Constants.fadeInOutAnimation);
+    //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
+    //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
+    setWhatIsBeingShown({ view: nextView, fade: false });
+    await sleep(0);
+    if (nextView === Constants.raceView) {
+      setRaceState(0);
+    } else if (nextView === Constants.racePilotsDetails) {
+      setPilotsState(0);
+    }
+    setWhatIsBeingShown({ view: nextView, fade: true });
   }
   useEffect(() => {
     //Definimos el funcionamiento del interval
     let IntervalTimer = setInterval(() => {
-      transitionToNext();
+      transitionToNext(IntervalTimer);
     }, Constants.transitionTimeViews);
     return () => {
       // cleaning up interval intervalWhatIsBeingShown;
       clearInterval(IntervalTimer);
     };
   });
-
+  const asyncIntervalFunction = async (intervalObject, stateValue, mapName) => {
+    console.log("Valor valuestate", stateValue);
+    let randomId = Math.random();
+    console.log("Random Val", randomId);
+    //clearInterval(intervalObject);
+    if (stateValue + 1 >= mapName.length) {
+      transitionToNext();
+    } else {
+      //Cambiamos el estado para que se dispare el evento de fade
+      setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
+      console.log(`Randomid ${randomId} goes to sleep animation fadeout`);
+      await sleep(Constants.fadeInOutAnimation);
+      console.log(`Randomid ${randomId} wakes up`);
+      //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
+      //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
+      console.log(`Randomid ${randomId} goes to sleep 0`);
+      await sleep(0);
+      console.log(`Randomid ${randomId} wakes up 0`);
+      setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: true });
+      if (whatIsBeingShown.view === Constants.raceView) {
+        setRaceState(stateValue + 1);
+      } else if (whatIsBeingShown.view === Constants.racePilotsDetails) {
+        setPilotsState(stateValue + 1);
+      }
+    }
+  };
   useEffect(() => {
     let IntervalTimerRaceView;
     //Definimos el funcionamiento del interval
     if (whatIsBeingShown.view === Constants.raceView) {
       IntervalTimerRaceView = setInterval(() => {
-        if (raceState + 1 >= mapaCarrerasTiempos.length) {
-          clearInterval(IntervalTimerRaceView);
-          transitionToNext();
-        } else {
-          //Cambiamos el estado para que se dispare el evento de fade
-          setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
-          sleep(1000).then(() => {
-            //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
-            //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
-            sleep(0).then(() => {
-              setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: true });
-              setRaceState(raceState + 1);
-            });
-          });
-          
-        }
+        asyncIntervalFunction(
+          IntervalTimerRaceView,
+          raceState,
+          mapaCarrerasTiempos
+        );
       }, Constants.transitionTimeRaces);
     }
 
@@ -98,20 +112,11 @@ function AutomaticView() {
     //Definimos el funcionamiento del interval -- mismo funcionamiento que el transitionTimesRaces
     if (whatIsBeingShown.view === Constants.racePilotsDetails) {
       IntervalTimerPilots = setInterval(() => {
-        if (pilotsState + 1 >= mapaKeysUsuarios.length) {
-          clearInterval(IntervalTimerPilots);
-          transitionToNext();
-        } else {
-          setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: false });
-          sleep(1000).then(() => {
-            //Cambiamos de estado para el fadeIn y Cambiamos de estado para la clasificación
-            //Se cambia primero a false porque el fadeIn solo funciona si la opacidad ya es 0;
-            sleep(0).then(() => {
-              setWhatIsBeingShown({ view: whatIsBeingShown.view, fade: true });
-              setPilotsState(pilotsState + 1);
-            });
-          });
-        }
+        asyncIntervalFunction(
+          IntervalTimerPilots,
+          pilotsState,
+          mapaKeysUsuarios
+        );
       }, Constants.transitionTimerPilots);
     }
 

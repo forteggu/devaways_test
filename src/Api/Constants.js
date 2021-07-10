@@ -6,7 +6,8 @@ const Constants = {
     racePilotsDetails: "Race Pilots View",
     transitionTimeRaces: 5000,
     transitionTimeViews: 10000, 
-    transitionTimerPilots:5000
+    transitionTimerPilots:5000,
+    fadeInOutAnimation: 1500
 }
 
 export default Constants;
