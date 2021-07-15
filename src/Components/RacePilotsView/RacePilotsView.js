@@ -6,6 +6,7 @@ let RacePilotsView = (props) => {
   const params = useLocation();
   const piloto = (props && props.piloto) || params.state;
   const resultadosPiloto = DataApi.getDatosCarrerasPosicionPiloto(piloto._id);
+
   return (
     <div>
       <h1 className="gradientTitle">Información del piloto {piloto.name}</h1>

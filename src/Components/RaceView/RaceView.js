@@ -11,9 +11,12 @@ function RaceView(props) {
     let tiemposPorCarreras = DataApi.getClasificacionPorCarreras();
     carreraN = DataApi.getDatosCarrera(raceName, tiemposPorCarreras)[0];
     arrayPilotos = DataApi.getDatosPilotos();
-  } else {
+  } else if(props.nombreCarrera && props.carreras ){
     carreraN = DataApi.getDatosCarrera(props.nombreCarrera, props.carreras)[0];
     arrayPilotos = props.pilotos;
+  }else{
+    carreraN = DataApi.getDatosCarrera(props.nombreCarrera, DataApi.getClasificacionPorCarreras())[0];
+    arrayPilotos = DataApi.getDatosPilotos();
   }
   let posicion = 0;
   return (

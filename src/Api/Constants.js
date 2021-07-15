@@ -4,9 +4,9 @@ const Constants = {
     genRank: "General Ranking",
     raceView: "Race View",
     racePilotsDetails: "Race Pilots View",
-    transitionTimeRaces: 5000,
-    transitionTimeViews: 10000, 
-    transitionTimerPilots:5000,
+    transitionTimeRaces: 100,
+    transitionTimeViews: 100, 
+    transitionTimerPilots:3000,
     fadeInOutAnimation: 1500
 }
 

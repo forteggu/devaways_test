@@ -7,7 +7,6 @@ function TeamsView() {
   const params = useLocation();
   const teamName = params.state;
   const teamMembers = DataApi.getMembersByTeam(teamName);
-  console.log(teamMembers);
   return (
     <div className="maxHeight">
       <div className={cssTV.wrapper}>
@@ -17,7 +16,7 @@ function TeamsView() {
           
           {teamMembers.map((member) => {
           
-          console.log(member);return (
+          return (
               <Link
                 key={member.name}
                 to={{ pathname: "./racePilots", state: member }}

@@ -1,3 +1,6 @@
+import RaceView from "../Components/RaceView/RaceView";
+import Constants from "./Constants";
+import * as DataApi from "./DataApi";
 /**
  * Este método corrige los tiempos para evitar la trampa de que los .sort den resultados erróneos
  * @param {*} time
@@ -38,10 +41,43 @@ export function setPole(ranking) {
 export function orderRacePositionsByTime(race) {
   return race.sort((a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo));
 }
-export const sleep= (time) => {
+export const sleep = (time) => {
   return new Promise((prom) => {
-    setTimeout(()=>{
+    setTimeout(() => {
       prom();
     }, time);
   });
+};
+
+export const getTransitionTime = (stateView) => {
+  let ret;
+  switch (stateView) {
+    case Constants.raceView:
+      ret = Constants.transitionTimeRaces;
+      break;
+    case Constants.genRank:
+      ret = Constants.transitionTimeViews;
+      break;
+    case Constants.racePilotsDetails:
+      ret = Constants.transitionTimerPilots;
+      break;
+    default:
+      ret = Constants.transitionTimeViews;
+  }
+  return ret;
+};
+
+export const getStructureForView = (view) => {
+  let retStructure;
+  switch (view) {
+    case Constants.raceView:
+      retStructure = DataApi.getClasificacionPorCarreras();
+      break;
+    case Constants.racePilotsDetails:
+      retStructure = DataApi.getPilotos();
+      break;
+    default:
+      retStructure = {};
+  }
+  return retStructure;
 };
