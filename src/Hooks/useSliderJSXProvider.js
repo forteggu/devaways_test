@@ -54,9 +54,9 @@ function useSliderJSXProvider() {
   };
   return (
     <Spring
-      from={{ opacity: 0}}
+      from={{ opacity: 0 }}
       to={[
-        { opacity: 1},
+        { opacity: 1 },
         {
           delay:
             sliderState.transitionTime - 1500 > 0
@@ -66,7 +66,11 @@ function useSliderJSXProvider() {
         },
       ]}
     >
-      {(styles) => <animated.div style={{height:"100%",...styles}}>{getContent()}</animated.div>}
+      {(styles) => (
+        <animated.div style={{ height: "100%", ...styles }}>
+          {getContent()}
+        </animated.div>
+      )}
     </Spring>
   );
 }

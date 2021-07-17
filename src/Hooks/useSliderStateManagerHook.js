@@ -43,8 +43,6 @@ const useSliderStateManagerHook = () => {
     return newState;
   };
   useEffect(() => {
-    console.log("triggered useEffect sliderStatemanager");
-
     console.log(
       `Currently @ View: ${sliderState.view} | Index: ${sliderState.index}`
     );
