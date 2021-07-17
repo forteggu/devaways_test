@@ -1,4 +1,3 @@
-import RaceView from "../Components/RaceView/RaceView";
 import Constants from "./Constants";
 import * as DataApi from "./DataApi";
 /**
@@ -41,14 +40,6 @@ export function setPole(ranking) {
 export function orderRacePositionsByTime(race) {
   return race.sort((a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo));
 }
-export const sleep = (time) => {
-  return new Promise((prom) => {
-    setTimeout(() => {
-      prom();
-    }, time);
-  });
-};
-
 export const getTransitionTime = (stateView) => {
   let ret;
   switch (stateView) {

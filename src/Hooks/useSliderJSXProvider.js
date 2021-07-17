@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Constants from "../Api/Constants";
 import * as DataApi from "../Api/DataApi";
 import GeneralRanking from "../Components/GeneralRanking/GeneralRanking";
 import useSliderStateManagerHook from "./useSliderStateManagerHook";
 import RacePilotsView from "../Components/RacePilotsView/RacePilotsView";
 import RaceView from "../Components/RaceView/RaceView";
-import { animated, useTransition, Spring } from "react-spring";
-import { sleep } from "../Api/Utils";
+import { animated, Spring } from "react-spring";
 
 function useSliderJSXProvider() {
   const sliderState = useSliderStateManagerHook();
