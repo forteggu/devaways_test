@@ -62,6 +62,8 @@ export function getGeneralRanking() {
  * Para esta función partimos del supuesto de que si el sistema se escala:
  * Todos los pilotos siguen teniendo el mismo número de carreras
  * Las carreras estan ordenadas tal y como lo están actualmente en el JSON
+ * No se utiliza el map porque no se recorre ningún array en concreto, simplemente se itera un número de veces igual
+ * al número de carreras que se han realizado
  */
 export function getClasificacionPorCarreras() {
   let numCarreras = RJson[0].races.length;
@@ -87,6 +89,9 @@ export function getClasificacionPorCarreras() {
  * Para esta función partimos del supuesto de que si el sistema se escala:
  * Todos los pilotos siguen teniendo el mismo número de carreras
  * Las carreras estan ordenadas tal y como lo están actualmente en el JSON
+ *
+ * No se utiliza el map porque no se recorre ningún array en concreto, simplemente se itera un número de veces igual
+ * al número de carreras que se han realizado
  */
 export function getTiemposPorCarreras() {
   let numCarreras = RJson[0].races.length;
@@ -103,30 +108,29 @@ export function getTiemposPorCarreras() {
   return mapaCarreasTiempos;
 }
 
-//Se crea una biblioteca de acceso rápido a los pilotos - acceso por _id
+/**
+ * Se crea una biblioteca de acceso rápido a los pilotos - acceso por _id
+ * No se utiliza map function porque no se busca devolver un array sino un objeto.
+ * Se utiliza destructuración para las propiedades del objeto
+ * */
 export function getDatosPilotos() {
   let pilotos = {};
   for (let p of RJson) {
-    pilotos[p._id] = {
-      name: p.name,
-      picture: p.picture,
-      age: p.age,
-      team: p.team,
-      _id: p._id,
-    };
+    const { races, ...rest } = p;
+    pilotos[rest._id] = rest;
   }
   return pilotos;
 }
 
+/**
+ * En este caso particular si se utiliza map porque se recorre RJson como un array
+ * Destructuring object
+ * @returns
+ */
 export function getPilotos() {
   return RJson.map((piloto) => {
-    return {
-      name: piloto.name,
-      picture: piloto.picture,
-      age: piloto.age,
-      team: piloto.team,
-      _id: piloto._id,
-    };
+    const { races, ...rest } = piloto;
+    return rest;
   });
 }
 //Devueve los datos de la carrera ordenados por tiempo
@@ -151,6 +155,9 @@ export function getDatosCarrerasPosicionPiloto(idPiloto) {
   });
 }
 
+/**
+ * Funcion que obtiene los diferentes equipos y sus componentes
+ */
 export function getTeams() {
   let arrayEquiposMiembros = [];
   for (let v of RJson) {
@@ -167,6 +174,11 @@ export function getTeams() {
   }
 }
 
+/**
+ * Se obtienen los miembros del equipo que se pasa por parámetro
+ * @param {*} teamName 
+ * @returns 
+ */
 export function getMembersByTeam(teamName) {
   return RJson.filter((piloto) => piloto.team === teamName);
 }

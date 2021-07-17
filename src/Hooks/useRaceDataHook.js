@@ -1,4 +1,3 @@
-import { useState } from "react";
 import * as DataApi from "../Api/DataApi";
 
 const useRaceDataHook = (params, props) => {

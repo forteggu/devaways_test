@@ -18,7 +18,6 @@ function App() {
             path="/"
             render={() => <Redirect to="/generalRanking" />}
           />
-
           <Route path="/generalRanking">
             <GeneralRanking></GeneralRanking>
           </Route>

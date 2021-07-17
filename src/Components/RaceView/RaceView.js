@@ -1,12 +1,12 @@
-import * as DataApi from "../../Api/DataApi";
 import cssRaces from "./RaceView.module.css";
 import cssGR from "../GeneralRanking/GeneralRanking.module.css";
 import { useLocation, Link } from "react-router-dom";
 import {getRankingClass} from "../../Api/Utils";
 import useRaceDataHook from "../../Hooks/useRaceDataHook";
 function RaceView(props) {
+  //Se obtienen los parametros pasados a traves del link
   const params = useLocation();
-
+  //Se obtienen los datos de las estructuras correspondientes a través del hook
   let [carreraN,arrayPilotos ] = useRaceDataHook(params,props);
   let posicion = 0;
   return (

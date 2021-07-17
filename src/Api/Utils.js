@@ -38,10 +38,19 @@ export function setPole(ranking) {
     return pos;
   });
 }
-
+/**
+ * Ordena la carrera pasada por parametro por tiempo
+ * @param {*} race 
+ * @returns 
+ */
 export function orderRacePositionsByTime(race) {
   return race.sort((a, b) => fixTimeStamp(a.tiempo) > fixTimeStamp(b.tiempo));
 }
+/**
+ * Obtiene el tiempo de transicion en funcion de la vista
+ * @param {*} stateView 
+ * @returns 
+ */
 export const getTransitionTime = (stateView) => {
   let ret;
   switch (stateView) {
@@ -60,6 +69,11 @@ export const getTransitionTime = (stateView) => {
   return ret;
 };
 
+/**
+ * Obtiene la estructura de datos en funcion de la vista
+ * @param {*} view 
+ * @returns 
+ */
 export const getStructureForView = (view) => {
   let retStructure;
   switch (view) {
@@ -76,6 +90,11 @@ export const getStructureForView = (view) => {
   
 };
 
+/**
+ * Obtiene la clase CSS en funcion de la posición del ranking
+ * @param {*} item 
+ * @returns 
+ */
 export const getRankingClass = (item) => {
   let rankPosClas;
   if (item.posicion === 1) {
