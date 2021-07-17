@@ -1,4 +1,3 @@
-import * as DataApi from "../../Api/DataApi";
 import cssRaces from "./RaceView.module.css";
 import cssGR from "../GeneralRanking/GeneralRanking.module.css";
 import { useLocation, Link } from "react-router-dom";

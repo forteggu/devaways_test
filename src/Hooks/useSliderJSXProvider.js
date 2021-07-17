@@ -2,27 +2,10 @@ import React from "react";
 import Constants from "../Api/Constants";
 import * as DataApi from "../Api/DataApi";
 import GeneralRanking from "../Components/GeneralRanking/GeneralRanking";
-import useSliderStateManagerHook from "./useSliderStateManagerHook";
 import RacePilotsView from "../Components/RacePilotsView/RacePilotsView";
 import RaceView from "../Components/RaceView/RaceView";
-import { animated, Spring } from "react-spring";
 
-function useSliderJSXProvider() {
-  const sliderState = useSliderStateManagerHook();
-  const getContent = () => {
-    let content;
-    switch (sliderState.view) {
-      case Constants.racePilotsDetails:
-        content = getRacePilotsContent();
-        break;
-      case Constants.raceView:
-        content = getRacesContent();
-        break;
-      default:
-        content = getGenRankContent();
-    }
-    return <div className="maxHeight">{content}</div>;
-  };
+function useSliderJSXProvider(sliderState) {
   const getRacePilotsContent = () => {
     return (
       <div className="maxHeight">
@@ -52,27 +35,19 @@ function useSliderJSXProvider() {
       </div>
     );
   };
-  return (
-    <Spring
-      from={{ opacity: 0 }}
-      to={[
-        { opacity: 1 },
-        {
-          delay:
-            sliderState.transitionTime - 1500 > 0
-              ? sliderState.transitionTime - 1500
-              : 0,
-          opacity: 0,
-        },
-      ]}
-    >
-      {(styles) => (
-        <animated.div style={{ height: "100%", ...styles }}>
-          {getContent()}
-        </animated.div>
-      )}
-    </Spring>
-  );
+
+  let content;
+  switch (sliderState.view) {
+    case Constants.racePilotsDetails:
+      content = getRacePilotsContent();
+      break;
+    case Constants.raceView:
+      content = getRacesContent();
+      break;
+    default:
+      content = getGenRankContent();
+  }
+  return <div className="maxHeight">{content}</div>;
 }
 
 export default useSliderJSXProvider;
