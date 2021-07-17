@@ -27,7 +27,7 @@ function RaceView(props) {
               className={cssGR.wrapper}
             >
               <div className={cssGR.posWrapper}>
-                <div className={getRankingClass(posicion)}>{posicion}</div>
+                <div className={getRankingClass({posicion:posicion})}>{posicion}</div>
               </div>
               <div className={cssGR.imgWrapper}>
                 <Link
