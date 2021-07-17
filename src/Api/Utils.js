@@ -77,7 +77,7 @@ export const getStructureForView = (view) => {
       retStructure = DataApi.getPilotos();
       break;
     default:
-      retStructure = {};
+      retStructure = [];
   }
   return retStructure;
 };

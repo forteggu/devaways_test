@@ -7,7 +7,7 @@ import { sleep } from "../../Api/Utils";
 
 function AutomaticView() {
   const automaticViewState = useSliderJSXProvider();
-  const [state, setstate] = useState();
+  /*const [state, setstate] = useState();
   const propsIn = {
     to: { opacity: 1 },
     from: { opacity: 0 },
@@ -25,9 +25,9 @@ function AutomaticView() {
   }, [automaticViewState])
   //const jsxStatus = useSliderJSXProvider();
   //return <div className="maxHeight">{jsxStatus}</div>;
-  return (
-    <div>
-      <animated.div style={style}>{automaticViewState}</animated.div>
+  */return (
+    <div className='maxHeight'>
+      {automaticViewState}
     </div>
   );
 }
