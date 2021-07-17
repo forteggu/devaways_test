@@ -1,5 +1,7 @@
 import Constants from "./Constants";
 import * as DataApi from "./DataApi";
+import cssGR from "../Components/GeneralRanking/GeneralRanking.module.css";
+
 /**
  * Este método corrige los tiempos para evitar la trampa de que los .sort den resultados erróneos
  * @param {*} time
@@ -71,4 +73,20 @@ export const getStructureForView = (view) => {
       retStructure = [];
   }
   return retStructure;
+  
 };
+
+export const getRankingClass = (item) => {
+  let rankPosClas;
+  if (item.posicion === 1) {
+    rankPosClas = `${cssGR.firstPlace} ${cssGR.rankPosition}`;
+  } else if (item.posicion === 2) {
+    rankPosClas = `${cssGR.secondPlace} ${cssGR.rankPosition}`;
+  } else if (item.posicion === 3) {
+    rankPosClas = `${cssGR.thirdPlace} ${cssGR.rankPosition}`;
+  } else {
+    rankPosClas = `${cssGR.rankPosition}`;
+  }
+  return rankPosClas;
+};
+

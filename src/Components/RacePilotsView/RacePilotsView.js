@@ -10,7 +10,6 @@ let RacePilotsView = (props) => {
   return (
     <div>
       <h1 className="gradientTitle">Información del piloto {piloto.name}</h1>
-
       <div className={cssPV.wrapper}>
         <div className={cssPV.personalInfoContainer}>
           <div>

@@ -1,32 +1,23 @@
 import cssGR from "./GeneralRanking.module.css";
 import * as DataApi from "../../Api/DataApi";
 import { Link } from "react-router-dom";
+import { getRankingClass } from "../../Api/Utils";
 function GeneralRanking() {
   let generalRankingList = DataApi.getGeneralRanking();
 
   return (
     <div className={cssGR.generalRankingContainer}>
-      <h1 className='gradientTitle'>Clasificación Global</h1>
+      <h1 className="gradientTitle">Clasificación Global</h1>
       <div className={cssGR.rankingsContainer}>
         {generalRankingList.map((item) => {
-          let rankPosClas;
-          if (item.posicion === 1) {
-            rankPosClas = `${cssGR.firstPlace} ${cssGR.rankPosition}`;
-          } else if (item.posicion === 2) {
-            rankPosClas = `${cssGR.secondPlace} ${cssGR.rankPosition}`;
-          } else if (item.posicion === 3) {
-            rankPosClas = `${cssGR.thirdPlace} ${cssGR.rankPosition}`;
-          } else {
-            rankPosClas = `${cssGR.rankPosition}`;
-          }
           return (
             <div key={item.datosPiloto.name} className={cssGR.wrapper}>
               <div className={cssGR.posWrapper}>
-                <div className={rankPosClas}>{item.posicion}</div>
+                <div className={getRankingClass(item)}>{item.posicion}</div>
               </div>
 
               <div className={cssGR.imgWrapper}>
-              <Link
+                <Link
                   to={{ pathname: "./racePilots", state: item.datosPiloto }}
                 >
                   <img
@@ -46,7 +37,9 @@ function GeneralRanking() {
               </div>
 
               <div className={cssGR.rankTeam}>
-              <Link to={{ pathname: "./team", state: item.datosPiloto.team }} >{item.datosPiloto.team}</Link>
+                <Link to={{ pathname: "./team", state: item.datosPiloto.team }}>
+                  {item.datosPiloto.team}
+                </Link>
               </div>
             </div>
           );

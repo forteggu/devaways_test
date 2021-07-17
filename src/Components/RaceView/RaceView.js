@@ -2,22 +2,12 @@ import * as DataApi from "../../Api/DataApi";
 import cssRaces from "./RaceView.module.css";
 import cssGR from "../GeneralRanking/GeneralRanking.module.css";
 import { useLocation, Link } from "react-router-dom";
+import {getRankingClass} from "../../Api/Utils";
+import useRaceDataHook from "../../Hooks/useRaceDataHook";
 function RaceView(props) {
   const params = useLocation();
-  const raceName = params.state;
-  let carreraN;
-  let arrayPilotos;
-  if (params && raceName) {
-    let tiemposPorCarreras = DataApi.getClasificacionPorCarreras();
-    carreraN = DataApi.getDatosCarrera(raceName, tiemposPorCarreras)[0];
-    arrayPilotos = DataApi.getDatosPilotos();
-  } else if(props.nombreCarrera && props.carreras ){
-    carreraN = DataApi.getDatosCarrera(props.nombreCarrera, props.carreras)[0];
-    arrayPilotos = props.pilotos;
-  }else{
-    carreraN = DataApi.getDatosCarrera(props.nombreCarrera, DataApi.getClasificacionPorCarreras())[0];
-    arrayPilotos = DataApi.getDatosPilotos();
-  }
+
+  let [carreraN,arrayPilotos ] = useRaceDataHook(params,props);
   let posicion = 0;
   return (
     <div
@@ -31,23 +21,13 @@ function RaceView(props) {
       >
         {carreraN.raceRanking.map((r) => {
           posicion++;
-          let rankPosClas;
-          if (posicion === 1) {
-            rankPosClas = `${cssGR.firstPlace} ${cssGR.rankPosition}`;
-          } else if (posicion === 2) {
-            rankPosClas = `${cssGR.secondPlace} ${cssGR.rankPosition}`;
-          } else if (posicion === 3) {
-            rankPosClas = `${cssGR.thirdPlace} ${cssGR.rankPosition}`;
-          } else {
-            rankPosClas = `${cssGR.rankPosition}`;
-          }
           return (
             <div
               key={`_${props.nombreCarrera}_${Math.random()}_raceRow`}
               className={cssGR.wrapper}
             >
               <div className={cssGR.posWrapper}>
-                <div className={rankPosClas}>{posicion}</div>{" "}
+                <div className={getRankingClass(posicion)}>{posicion}</div>
               </div>
               <div className={cssGR.imgWrapper}>
                 <Link

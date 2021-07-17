@@ -1,7 +1,7 @@
 import useSliderJSXProvider from "../../Hooks/useSliderJSXProvider";
 
 function AutomaticView() {
-  const automaticViewState = useSliderJSXProvider();
-  return <div className="maxHeight">{automaticViewState}</div>;
+  const avContent = useSliderJSXProvider();
+  return <div className="maxHeight">{avContent}</div>;
 }
 export default AutomaticView;
