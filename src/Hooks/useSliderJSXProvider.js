@@ -57,7 +57,7 @@ function useSliderJSXProvider() {
     <Spring
       from={{ opacity: 0}}
       to={[
-        { opacity: 1, color: "#ffaaee"},
+        { opacity: 1},
         {
           delay:
             sliderState.transitionTime - 1500 > 0
