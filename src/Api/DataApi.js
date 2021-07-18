@@ -14,14 +14,9 @@ export function getGeneralRanking() {
   for (let n = 0; n < numCarreras; n++) {
     //Recorremos las carreras
     let datosN = RJson.map((racePilot) => {
+      const { races, ...rest } = racePilot;
       return {
-        datosPiloto: {
-          _id: racePilot._id,
-          name: racePilot.name,
-          picture: racePilot.picture,
-          age: racePilot.age,
-          team: racePilot.team,
-        },
+        datosPiloto: rest,
         tiempo: racePilot.races[n].time,
       }; //obtenemos los tiempos de cada piloto para cada carrera, creando así un mapa más sencillo de trabajar
     });
@@ -176,8 +171,8 @@ export function getTeams() {
 
 /**
  * Se obtienen los miembros del equipo que se pasa por parámetro
- * @param {*} teamName 
- * @returns 
+ * @param {*} teamName
+ * @returns
  */
 export function getMembersByTeam(teamName) {
   return RJson.filter((piloto) => piloto.team === teamName);

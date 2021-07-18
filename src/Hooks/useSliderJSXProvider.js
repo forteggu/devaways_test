@@ -36,6 +36,7 @@ function useSliderJSXProvider(sliderState) {
     );
   };
 
+  // Devuelve el contenido jsx en función del contenido del sliderState
   let content;
   switch (sliderState.view) {
     case Constants.racePilotsDetails:
